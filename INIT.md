@@ -1,0 +1,1 @@
+- Solo pone "php -S localhost:8080" en el cmd o la terminal, asegurate de tener php instalado y haberle dado composer install antes de iniciar el server
