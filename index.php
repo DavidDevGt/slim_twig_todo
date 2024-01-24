@@ -47,4 +47,18 @@ $app->post('/tareas/{id}', function (Request $request, Response $response, array
     return $response->withHeader('Location', '/tareas')->withStatus(302);
 });
 
+// Edit task
+$app->post('/tareas/editar/{id}', function (Request $request, Response $response, array $args) {
+    $id = (int) $args['id'];
+    $data = $request->getParsedBody();
+    $nuevaTarea = $data['tarea'] ?? '';
+
+    $tareas = json_decode(file_get_contents(__DIR__ . '/db.json'), true);
+    if (isset($tareas[$id])) {
+        $tareas[$id] = $nuevaTarea;
+        file_put_contents(__DIR__ . '/db.json', json_encode($tareas));
+    }
+    return $response->withHeader('Location', '/tareas')->withStatus(302);
+});
+
 $app->run();

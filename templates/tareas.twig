@@ -27,7 +27,15 @@
 			<ul class="list-group">
 				{% for tarea in tareas %}
 					<li class="list-group-item d-flex justify-content-between align-items-center">
-						{{ tarea }}
+						<form action="/tareas/editar/{{ loop.index0 }}" method="post" class="form-inline">
+							<input type="text" name="tarea" class="form-control-plaintext tarea-editable" value="{{ tarea }}" readonly>
+							<button type="button" class="btn btn-info btn-sm mx-1 editar-tarea">
+								<i class="fas fa-pencil-alt"></i>
+							</button>
+							<button type="submit" class="btn btn-success btn-sm mx-1 guardar-tarea" style="display:none;">
+								<i class="fas fa-save"></i>
+							</button>
+						</form>
 						<form action="/tareas/{{ loop.index0 }}" method="post">
 							<button type="submit" class="btn btn-danger btn-sm">
 								<i class="fas fa-trash"></i>
@@ -37,6 +45,18 @@
 				{% endfor %}
 			</ul>
 		</div>
+		<script>
+			document.querySelectorAll('.editar-tarea').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+            let tarea = this.parentNode.querySelector('.tarea-editable');
+            tarea.readOnly = false;
+            tarea.classList.remove('form-control-plaintext');
+            tarea.classList.add('form-control');
+            this.style.display = 'none';
+            this.nextElementSibling.style.display = 'inline-block';
+            });
+            });
+		</script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 	</body>
 </html>
