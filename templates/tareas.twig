@@ -30,7 +30,7 @@
 					<li class="list-group-item d-flex align-items-center">
 						<form action="/tareas/editar/{{ loop.index0 }}" method="post" class="d-flex flex-grow-1 me-2">
 							<input type="text" name="tarea" class="form-control tarea-editable" value="{{ tarea }}" readonly style="flex-grow: 1; margin-right: 10px;">
-							<div class="btn-group" role="group">
+							<div>
 								<button type="button" class="btn btn-info btn-sm editar-tarea">
 									<i class="fas fa-pencil-alt"></i>
 								</button>
@@ -39,7 +39,7 @@
 								</button>
 							</div>
 						</form>
-						<form action="/tareas/{{ loop.index0 }}" method="post">
+						<form action="/tareas/{{ loop.index0 }}" method="post" class="mb-2">
 							<button type="submit" class="btn btn-danger btn-sm">
 								<i class="fas fa-trash"></i>
 							</button>
